@@ -10,6 +10,8 @@ class ColorsController
 
     public function index(): void
     {
-        require __DIR__ . '/../views/colors/index.php';
+        $title = 'Cores';
+        $view_path = '/colors/index.php';
+        require __DIR__ . '/../views/layouts/main.php';
     }
 }

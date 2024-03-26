@@ -10,6 +10,8 @@ class UsersController
 
     public function index(): void
     {
-        require __DIR__ . '/../views/users/index.php';
+        $title = 'Usuários';
+        $view_path = '/users/index.php';
+        require __DIR__ . '/../views/layouts/main.php';
     }
 }
