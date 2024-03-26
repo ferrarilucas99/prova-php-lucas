@@ -1,34 +1,13 @@
 <?php
 
-require 'connection.php';
+require_once __DIR__ . '/controllers/UsersController.php';
+require_once __DIR__ . '/controllers/ColorsController.php';
 
-$connection = new Connection();
+$user = new UsersController();
+$color = new ColorsController();
 
-$users = $connection->query("SELECT * FROM users");
-
-echo "<table border='1'>
-
-    <tr>
-        <th>ID</th>    
-        <th>Nome</th>    
-        <th>Email</th>
-        <th>Ação</th>    
-    </tr>
-";
-
-foreach($users as $user) {
-
-    echo sprintf("<tr>
-                      <td>%s</td>
-                      <td>%s</td>
-                      <td>%s</td>
-                      <td>
-                           <a href='#'>Editar</a>
-                           <a href='#'>Excluir</a>
-                      </td>
-                   </tr>",
-        $user->id, $user->name, $user->email);
-
+if($_SERVER['REQUEST_URI'] === '/colors'){
+    $color->index();
+}else{
+    $user->index();
 }
-
-echo "</table>";
