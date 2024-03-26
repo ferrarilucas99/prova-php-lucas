@@ -1,5 +1,9 @@
 <?php
 
+namespace Classes;
+
+use PDO;
+use stdClass;
 class Connection {
 
     private $databaseFile;

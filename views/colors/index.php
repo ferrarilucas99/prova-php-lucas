@@ -1,12 +1,3 @@
-<?php
-
-require 'classes/connection.php';
-
-$connection = new Connection();
-
-$colors = $connection->query("SELECT * FROM colors");
-?>
-
 <section class="container mt-5">
     <div class="card">
         <div class="card-body">
