@@ -1,13 +1,8 @@
 <?php
 
-require_once __DIR__ . '/controllers/UsersController.php';
-require_once __DIR__ . '/controllers/ColorsController.php';
+require_once __DIR__ . '/classes/autoload.php';
+require_once __DIR__ . '/routes.php';
 
-$user = new UsersController();
-$color = new ColorsController();
-
-if($_SERVER['REQUEST_URI'] === '/colors'){
-    $color->index();
-}else{
-    $user->index();
-}
+$method = $_SERVER['REQUEST_METHOD'];
+$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$router->handleRequest($method, $path);
