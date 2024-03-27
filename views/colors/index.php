@@ -18,17 +18,18 @@
                 <tbody>
                     <?php
                     foreach ($colors as $color) {
+                        $json_escaped = htmlspecialchars(json_encode($color), ENT_QUOTES, 'UTF-8');
                         $html = '<tr>
                                     <td>' . $color->id . '</td>
                                     <td>' . $color->name . '</td>
                                     <td><div class="color" style="background-color: ' . $color->name . '"></div></td>
                                     <td>
-                                        <button type="button" class="btn btn-primary" data-model="colors" data-json="" data-edit>
+                                        <button type="button" class="btn btn-primary" data-model="colors" data-json="'.$json_escaped.'" data-edit>
                                             Editar
                                         </button>
                                     </td>
                                     <td>
-                                        <form action="" method="POST" data-delete>
+                                        <form action="/colors/delete/'.$color->id.'" method="POST" data-delete>
                                             <input type="hidden" name="_method" value="DELETE">
                                             <button type="submit" class="btn btn-danger">
                                                 Excluir
@@ -45,3 +46,8 @@
         </div>
     </div>
 </section>
+
+<?php
+    require_once 'modalAdd.php';
+    require_once 'modalEdit.php';
+?>

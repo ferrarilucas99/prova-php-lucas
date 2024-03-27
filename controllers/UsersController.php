@@ -25,7 +25,7 @@ class UsersController
     {
         $validation = $this->validate($_POST);
 
-        if(isset($validation['error']) && $validation['error']){
+        if (isset($validation['error']) && $validation['error']) {
             echo json_encode($validation);
             return;
         }
@@ -50,10 +50,10 @@ class UsersController
 
     public function update($id)
     {
-        if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['_method']) && $_POST['_method'] === 'PUT'){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['_method']) && $_POST['_method'] === 'PUT') {
             $validation = $this->validate($_POST);
 
-            if(isset($validation['error']) && $validation['error']){
+            if (isset($validation['error']) && $validation['error']) {
                 echo json_encode($validation);
                 return;
             }
@@ -71,7 +71,7 @@ class UsersController
                 'message' => 'Usuário atualizado com sucesso!',
                 'model' => 'users',
             ];
-        }else{
+        } else {
             $response = [
                 'error' => true,
                 'message' => 'Metodo não permitido!',
@@ -100,7 +100,7 @@ class UsersController
                     'message' => 'Erro ao excluir usuário: '. $th->getMessage(),
                 ];
             }
-        }else{
+        } else {
             $response = [
                 'error' => true,
                 'message' => 'Metodo não permitido!',
@@ -121,7 +121,7 @@ class UsersController
 
     public function validate($request)
     {
-        if(empty($request['name']) || empty($request['email'])){
+        if (empty($request['name']) || empty($request['email'])) {
             $message = empty($request['name']) ? 'O campo Nome é obrigatório! <br>' : '';
             $message .= empty($request['email']) ? 'O campo Email é obrigatório!' : '';
 

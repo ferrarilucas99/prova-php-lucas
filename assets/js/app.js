@@ -124,6 +124,35 @@ $(document).on('submit', 'form[data-delete]', (e) => {
     }
 });
 
+$(document).on('click', '[data-color]', (e) => {
+    var $this = $(e.currentTarget);
+    var input_group = $this.next('.color-group');
+
+    var color_simple = input_group.find('.color_simple_block');
+    var color_specific = input_group.find('.color_specific_block');
+    
+    var color_simple_input = color_simple.find('input');
+    var color_specific_input = color_specific.find('input');
+
+    if(color_simple.hasClass('d-none') && !color_specific.hasClass('d-none')){
+        $this.text('Usar cor específica');
+
+        color_simple.removeClass('d-none');
+        color_specific.addClass('d-none');
+
+        color_simple_input.prop('required', true);
+        color_specific_input.attr('name', '').prop('required', false);
+    }else {
+        $this.text('Usar cor simples');
+
+        color_specific.removeClass('d-none');
+        color_simple.addClass('d-none');
+
+        color_specific_input.attr('name', 'color_specific').prop('required', true);
+        color_simple_input.prop('required', false);
+    }
+});
+
 function mountDataTables(model){
     $('.myTable').DataTable().destroy();
 
@@ -170,24 +199,32 @@ function mountDataTables(model){
             }
         ],
     });
-};
+}
 
 function clearModalInputs(){
     var modal = $('#edit-modal');
     var form = $('#edit-user');
     
-    form.attr('action', '')
+    form.attr('action', '');
+
     modal.find('#user-id').text('');
     modal.find('#name-edit').val('');
     modal.find('#email-edit').val('');
+
+    modal.find('.form-control-simple-color').val('');
+    modal.find('.form-control-color').val('');
 }
 
 function setModalInputsValues(json, model){
     var modal = $('#edit-modal');
     var form = $('form[data-edit]');
     
-    form.attr('action', `${window.location.origin}/${model}/update/${json.id}`)
+    form.attr('action', `${window.location.origin}/${model}/update/${json.id}`);
+
     modal.find('#model-id').text(`#${json.id}`);
     modal.find('#name-edit').val(json.name);
     modal.find('#email-edit').val(json.email);
+
+    modal.find('#color_simple_input').val(json.name);
+    modal.find('#color_specific_input').val(json.name);
 }

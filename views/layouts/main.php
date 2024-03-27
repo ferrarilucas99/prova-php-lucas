@@ -22,6 +22,7 @@
 <body>
 
     <?php
+        include_once __DIR__ . '/../components/header.php';
         include_once __DIR__ . '/..' . $view_path;
     ?>
 

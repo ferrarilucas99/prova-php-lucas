@@ -58,12 +58,12 @@ class User
         $query_string = '';
 
 
-        foreach($query_array as $key => $value){
+        foreach ($query_array as $key => $value) {
             $count++;
-            if($action == 'insert'){
+            if ($action == 'insert') {
                 $columns .= $count < $total ? "'$key', " : "'$key'";
                 $values .= $count < $total ? "'$value', " : "'$value'";
-            }else{
+            } else {
                 $comma = $count < $total ? ', ' : '';
                 $query_string .= "`$key`  =  '$value'  $comma";
             }

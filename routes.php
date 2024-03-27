@@ -16,3 +16,7 @@ $router->addRoute('POST', '/users/update/(\d+)', 'UsersController@update');
 $router->addRoute('POST', '/users/delete/(\d+)', 'UsersController@destroy');
 
 $router->addRoute('GET', '/colors', 'ColorsController@index');
+$router->addRoute('GET', '/colors/ajax', 'ColorsController@ajax');
+$router->addRoute('POST', '/colors/create', 'ColorsController@create');
+$router->addRoute('POST', '/colors/update/(\d+)', 'ColorsController@update');
+$router->addRoute('POST', '/colors/delete/(\d+)', 'ColorsController@destroy');
