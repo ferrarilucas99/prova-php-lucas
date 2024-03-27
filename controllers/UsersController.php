@@ -3,19 +3,24 @@
 namespace Controllers;
 
 use Models\User;
+use Models\Color;
 
 class UsersController
 {
     private $user;
+    private $color;
 
     public function __construct()
     {
         $this->user = new User();
+        $this->color = new Color();
     }
 
     public function index(): void
     {
         $users = $this->user->get();
+        $colors = $this->color->get();
+
         $title = 'Usuários';
         $view_path = '/users/index.php';
         require __DIR__ . '/../views/layouts/main.php';
@@ -33,6 +38,7 @@ class UsersController
         $request = [
             'name' => $_POST['name'],
             'email' => $_POST['email'],
+            'colors' => isset($_POST['colors']) && !empty($_POST['colors']) ? $_POST['colors'] : null,
         ];
 
         $new_user = $this->user->insert($request);
@@ -61,6 +67,7 @@ class UsersController
             $request = [
                 'name' => $_POST['name'],
                 'email' => $_POST['email'],
+                'colors' => isset($_POST['colors']) && !empty($_POST['colors']) ? $_POST['colors'] : null,
             ];
     
             $update_user = $this->user->update($request, $id);
