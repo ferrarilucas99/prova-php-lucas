@@ -152,7 +152,7 @@ function mountDataTables(model){
             {
                 data: null,
                 render: function(rowData){
-                    return `<button type="button" class="btn btn-primary" data-model="${model}" data-json='' data-edit>
+                    return `<button type="button" class="btn btn-primary" data-model="${model}" data-json='${JSON.stringify(rowData)}' data-edit>
                                 Editar
                             </button>`;
                 }
@@ -160,7 +160,7 @@ function mountDataTables(model){
             {
                 data: 'id',
                 render: function(data){
-                    return `<form action="" method="POST" data-delete>
+                    return `<form action="/${model}/delete/${data}" method="POST" data-delete>
                                 <input type="hidden" name="_method" value="DELETE">
                                 <button type="submit" class="btn btn-danger">
                                     Excluir
